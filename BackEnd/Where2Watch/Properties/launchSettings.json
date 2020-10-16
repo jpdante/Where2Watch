@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "Where2Watch": {
+      "commandName": "Executable",
+      "executablePath": "C:\\Users\\jpdante\\Documents\\GitHub\\where2watch\\BackEnd\\HtcSharp\\HtcSharp.Server.exe",
+      "workingDirectory": "C:\\Users\\jpdante\\Documents\\GitHub\\where2watch\\BackEnd\\HtcSharp\\",
+      "environmentVariables": {
+        "DevMode": "true"
+      }
+    }
+  }
+}

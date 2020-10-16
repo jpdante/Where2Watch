@@ -1,0 +1,40 @@
+.poster {
+  .posterImage {
+    width: 100%;
+    height: auto;
+  }
+
+  .badges {
+    * {
+      margin: 0 2px 0 2px;
+    }
+  }
+
+  .progress {
+    overflow: visible !important;
+    height: 23px !important;
+    background-color: transparent !important;
+    .progressBarBox {
+      padding-top: 10px !important;
+      padding-bottom: 10px !important;
+      .progressBar {
+        height: 3px !important;
+      }
+    }
+  }
+}
+
+.wrapper {
+  position: relative;
+  padding-bottom: 54px;
+
+  .bottom {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin-right: 15px;
+    margin-left: 15px;
+    height: 54px;
+  }
+}

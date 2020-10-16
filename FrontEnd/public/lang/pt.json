@@ -1,0 +1,12 @@
+{
+  "http": {
+    "notfound": "404 - Página não encontrada"
+  },
+  "platforms": {
+    "available": "Disponivel em:"
+  },
+  "poster": {
+    "dislike": "Descurtir",
+    "like": "Curtir"
+  }
+}

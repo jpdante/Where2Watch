@@ -1,0 +1,21 @@
+@import "./bootstrap.scss";
+
+.module {
+  background-color: #212224;
+  padding: 15px;
+  border-radius: 5px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  position: relative;
+}
+
+.ad {
+  background-color: #004492;
+  padding: 10px;
+  border-radius: 5px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  position: relative;
+  height: 76px !important;
+  text-align: center;
+}
