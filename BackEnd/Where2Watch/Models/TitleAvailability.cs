@@ -14,8 +14,7 @@ namespace Where2Watch.Models {
         public Platform Platform { get; set; }
 
         [Required]
-        [MaxLength(2)]
-        public string Country { get; set; }
+        public Country Country { get; set; }
 
         public string Link { get; set; }
     }

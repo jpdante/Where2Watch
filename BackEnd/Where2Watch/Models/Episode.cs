@@ -10,9 +10,14 @@ namespace Where2Watch.Models {
         public Title Title { get; set; }
 
         [Required]
+        public long SeasonId { get; set; }
+        public Season Season { get; set; }
+
+        [Required]
         public int Number { get; set; }
 
         [Required]
+        [MaxLength(256)]
         public string OriginalName { get; set; }
     }
 }

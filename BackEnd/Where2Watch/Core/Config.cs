@@ -11,7 +11,7 @@
                 Db = new DatabaseConfig {
                     Host = "127.0.0.1",
                     Port = 3306,
-                    Database = "rednx",
+                    Database = "w2w",
                     Username = "root",
                     Password = "root"
                 },

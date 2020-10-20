@@ -10,10 +10,10 @@ namespace Where2Watch.Models {
         public Episode Episode { get; set; }
 
         [Required]
-        [MaxLength(2)]
-        public string Country { get; set; }
+        public Country Country { get; set; }
 
         [Required]
+        [MaxLength(256)]
         public string Name { get; set; }
     }
 }

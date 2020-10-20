@@ -12,6 +12,7 @@ namespace Where2Watch.Models {
         [Required]
         public int Number { get; set; }
 
+        [MaxLength(256)]
         public string Name { get; set; }
     }
 }

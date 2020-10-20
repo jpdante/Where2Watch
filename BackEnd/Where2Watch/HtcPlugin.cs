@@ -11,6 +11,7 @@ using HtcSharp.Core.Plugin.Abstractions;
 using HtcSharp.HttpModule;
 using HtcSharp.HttpModule.Http.Abstractions;
 using HtcSharp.HttpModule.Routing;
+using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 using StackExchange.Redis;
@@ -37,7 +38,7 @@ namespace Where2Watch {
                 ContractResolver = new CamelCasePropertyNamesContractResolver(),
             };
 
-            string configPath = Path.Combine(pluginServerContext.PluginsPath, "rednx.json");
+            string configPath = Path.Combine(pluginServerContext.PluginsPath, "w2w.json");
             if (!File.Exists(configPath)) {
                 Config = Config.NewConfig();
                 File.WriteAllText(configPath, JsonConvert.SerializeObject(Config));
@@ -51,6 +52,10 @@ namespace Where2Watch {
         }
 
         public async Task Enable() {
+            var context = new DatabaseContext();
+            await context.Database.MigrateAsync();
+            //await context.Database.EnsureCreatedAsync();
+
             RedisConnection = await ConnectionMultiplexer.ConnectAsync(Config.Redis.ConnectionString);
             Redis = RedisConnection.GetDatabase(0);
         }

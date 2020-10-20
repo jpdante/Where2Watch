@@ -6,6 +6,7 @@ namespace Where2Watch.Models {
         public long Id { get; set; }
 
         [Required]
+        [MaxLength(128)]
         public string Name { get; set; }
 
         [Required]
@@ -13,5 +14,8 @@ namespace Where2Watch.Models {
 
         [Required]
         public string Link { get; set; }
+
+        [Required]
+        public Country Country { get; set; }
     }
 }

@@ -11,8 +11,7 @@ namespace Where2Watch.Models {
         public Title Title { get; set; }
 
         [Required]
-        [MaxLength(2)]
-        public string Country { get; set; }
+        public Country Country { get; set; }
 
         [Required]
         public string Name { get; set; }
