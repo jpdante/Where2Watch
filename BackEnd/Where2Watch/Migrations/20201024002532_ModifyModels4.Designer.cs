@@ -2,15 +2,17 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Where2Watch;
 
 namespace Where2Watch.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    partial class DatabaseContextModelSnapshot : ModelSnapshot
+    [Migration("20201024002532_ModifyModels4")]
+    partial class ModifyModels4
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -174,8 +176,8 @@ namespace Where2Watch.Migrations
                     b.Property<long>("Id")
                         .HasColumnType("bigint");
 
-                    b.Property<string>("Classification")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+                    b.Property<int>("Classification")
+                        .HasColumnType("int");
 
                     b.Property<uint>("Dislikes")
                         .HasColumnType("int unsigned");

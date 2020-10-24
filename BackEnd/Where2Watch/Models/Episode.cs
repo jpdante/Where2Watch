@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+// ReSharper disable InconsistentNaming
 
 namespace Where2Watch.Models {
     public class Episode {
@@ -15,6 +16,10 @@ namespace Where2Watch.Models {
 
         [Required]
         public int Number { get; set; }
+
+        public int Year { get; set; }
+
+        public string IMDbId { get; set; }
 
         [Required]
         [MaxLength(256)]

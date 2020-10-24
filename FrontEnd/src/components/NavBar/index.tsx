@@ -26,7 +26,7 @@ class NavBar extends React.Component<WithTranslation> {
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav mr-auto">
               <li className="nav-item active">
-                <NavLink to="/">Home</NavLink>
+                <NavLink exact to="/">Home</NavLink>
               </li>
             </ul>
           </div>

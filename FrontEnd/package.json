@@ -2,6 +2,8 @@
   "name": "where2watch",
   "version": "0.1.0",
   "private": true,
+  "homepage": "http://tryhosting.com.br",
+  "proxy": "http://localhost:35740",
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.28",
     "@fortawesome/free-brands-svg-icons": "^5.13.0",

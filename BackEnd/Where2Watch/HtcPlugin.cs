@@ -32,7 +32,7 @@ namespace Where2Watch {
         internal static ConnectionMultiplexer RedisConnection { get; private set; }
         internal static IDatabase Redis { get; private set; }
 
-        public Task Load(PluginServerContext pluginServerContext, ILogger logger) {
+        public async Task Load(PluginServerContext pluginServerContext, ILogger logger) {
             Logger = logger;
             JsonConvert.DefaultSettings = () => new JsonSerializerSettings {
                 ContractResolver = new CamelCasePropertyNamesContractResolver(),
@@ -41,23 +41,24 @@ namespace Where2Watch {
             string configPath = Path.Combine(pluginServerContext.PluginsPath, "w2w.json");
             if (!File.Exists(configPath)) {
                 Config = Config.NewConfig();
-                File.WriteAllText(configPath, JsonConvert.SerializeObject(Config));
+                await File.WriteAllTextAsync(configPath, JsonConvert.SerializeObject(Config));
             }
-            Config = JsonConvert.DeserializeObject<Config>(File.ReadAllText(configPath));
+            Config = JsonConvert.DeserializeObject<Config>(await File.ReadAllTextAsync(configPath));
 
             DatabaseContext.SetConnectionString($"server={Config.Db.Host};port={Config.Db.Port};database={Config.Db.Database};user={Config.Db.Username};password={Config.Db.Password}");
             _ = new Captcha(Config.CaptchaKey);
             LoadControllers();
-            return Task.CompletedTask;
-        }
 
-        public async Task Enable() {
             var context = new DatabaseContext();
             await context.Database.MigrateAsync();
             //await context.Database.EnsureCreatedAsync();
 
             RedisConnection = await ConnectionMultiplexer.ConnectAsync(Config.Redis.ConnectionString);
             Redis = RedisConnection.GetDatabase(0);
+        }
+
+        public Task Enable() {
+            return Task.CompletedTask;
         }
 
         public async Task Disable() {

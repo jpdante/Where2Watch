@@ -27,7 +27,7 @@ function SubRoute() {
       <div className="container">
         <Switch>
           <Route exact component={Home} path="/" />
-          <Route exact component={Title} path="/:id" />
+          <Route component={Title} path="/:id" />
         </Switch>
       </div>
     </div>

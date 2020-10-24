@@ -2,15 +2,17 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Where2Watch;
 
 namespace Where2Watch.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    partial class DatabaseContextModelSnapshot : ModelSnapshot
+    [Migration("20201023232804_ModifyModels2")]
+    partial class ModifyModels2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -63,9 +65,6 @@ namespace Where2Watch.Migrations
                     b.Property<long>("Id")
                         .HasColumnType("bigint");
 
-                    b.Property<string>("IMDbId")
-                        .HasColumnType("varchar(255) CHARACTER SET utf8mb4");
-
                     b.Property<int>("Number")
                         .HasColumnType("int");
 
@@ -84,8 +83,6 @@ namespace Where2Watch.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("IMDbId");
 
                     b.HasIndex("SeasonId");
 
@@ -174,17 +171,11 @@ namespace Where2Watch.Migrations
                     b.Property<long>("Id")
                         .HasColumnType("bigint");
 
-                    b.Property<string>("Classification")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
-
                     b.Property<uint>("Dislikes")
                         .HasColumnType("int unsigned");
 
                     b.Property<int>("Episodes")
                         .HasColumnType("int");
-
-                    b.Property<string>("Genres")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<string>("IMDbId")
                         .HasColumnType("varchar(255) CHARACTER SET utf8mb4");
@@ -197,9 +188,6 @@ namespace Where2Watch.Migrations
 
                     b.Property<string>("OriginalName")
                         .IsRequired()
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
-
-                    b.Property<string>("Outline")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<string>("Poster")

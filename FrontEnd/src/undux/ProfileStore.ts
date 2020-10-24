@@ -5,6 +5,7 @@ type State = {
   email: string;
   username: string;
   picture: string;
+  country: string;
 };
 
 let initialState: State = {
@@ -12,6 +13,7 @@ let initialState: State = {
   email: "default@default.com",
   username: "default",
   picture: "default",
+  country: "us",
 };
 
 export default createConnectedStore(initialState, withReduxDevtools);

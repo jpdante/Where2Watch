@@ -10,6 +10,7 @@ import Loading from "./components/Loading";
 import SessionCheck from "./utils/SessionCheck";
 import ProfileLoader from "./utils/ProfileLoader";
 import ProfileStore from "./undux/ProfileStore";
+import TitleStore from "./undux/TitleStore";
 
 function App() {
   return (
@@ -17,9 +18,11 @@ function App() {
       <SessionCheck>
         <ProfileStore.Container>
           <ProfileLoader />
-          <Suspense fallback={<Loading />}>
-            <Routes />
-          </Suspense>
+          <TitleStore.Container>
+            <Suspense fallback={<Loading />}>
+              <Routes />
+            </Suspense>
+          </TitleStore.Container>
         </ProfileStore.Container>
       </SessionCheck>
     </AuthStore.Container>

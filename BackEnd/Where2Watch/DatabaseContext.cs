@@ -41,6 +41,7 @@ namespace Where2Watch {
             modelBuilder.Entity<Title>(entity => {
                 entity.HasKey(e => e.Id);
                 entity.Property(e => e.Id).ValueGeneratedNever();
+                entity.HasIndex(e => e.IMDbId);
             });
 
             modelBuilder.Entity<TitleName>(entity => {
@@ -80,6 +81,7 @@ namespace Where2Watch {
                 entity.Property(e => e.Id).ValueGeneratedNever();
                 entity.HasIndex(e => e.TitleId);
                 entity.HasIndex(e => e.SeasonId);
+                entity.HasIndex(e => e.IMDbId);
             });
 
             modelBuilder.Entity<EpisodeName>(entity => {
