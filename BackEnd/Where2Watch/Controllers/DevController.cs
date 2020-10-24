@@ -33,14 +33,14 @@ namespace Where2Watch.Controllers {
             var client = new RestClient($"https://imdb8.p.rapidapi.com/title/get-overview-details?currentCountry=US&tconst={t[0]}");
             var request = new RestRequest(Method.GET);
             request.AddHeader("x-rapidapi-host", "imdb8.p.rapidapi.com");
-            request.AddHeader("x-rapidapi-key", "e568ff6b82msh655a9e2fabeadd8p1bb151jsn1c0fb32acc0a");
+            request.AddHeader("x-rapidapi-key", HtcPlugin.Config.RapidApi.Key);
             var response = await client.ExecuteAsync(request);
             var titleOverview = JsonSerializer.Deserialize<TitleOverviewDetails>(response.Content);
 
             client = new RestClient($"https://imdb8.p.rapidapi.com/title/get-seasons?tconst={t[0]}");
             request = new RestRequest(Method.GET);
             request.AddHeader("x-rapidapi-host", "imdb8.p.rapidapi.com");
-            request.AddHeader("x-rapidapi-key", "e568ff6b82msh655a9e2fabeadd8p1bb151jsn1c0fb32acc0a");
+            request.AddHeader("x-rapidapi-key", HtcPlugin.Config.RapidApi.Key);
             response = await client.ExecuteAsync(request);
             SeasonDetails[] seasonsDetails = JsonSerializer.Deserialize<SeasonDetails[]>(response.Content);
 
@@ -152,73 +152,5 @@ namespace Where2Watch.Controllers {
 
             await httpContext.Response.WriteAsync($"{{\"success\":true}}");
         }
-
-        /*[HttpGet("/api/dev/add/seasons")]
-        public static async Task AddSeasons(HttpContext httpContext) {
-            if (!httpContext.Request.Query.TryGetValue("key", out var key) ||
-                !httpContext.Request.Query.TryGetValue("t", out var t)) {
-                await httpContext.Response.SendErrorAsync(1, "Invalid `dev key` or `t input`.");
-                return;
-            }
-            if (key.Count == 0 || !DevKeys.Contains(key[0])) {
-                await httpContext.Response.SendErrorAsync(2, "Invalid dev key.");
-                return;
-            }
-            if (t.Count == 0) {
-                await httpContext.Response.SendErrorAsync(3, "Invalid t input.");
-                return;
-            }
-
-            await using var context = new DatabaseContext();
-
-            var title = await (from a in context.Titles where a.IMDbId.Equals(t[0]) select a).FirstOrDefaultAsync();
-            if (title == null) {
-                await httpContext.Response.SendRequestErrorAsync(4, "There is no title with this IMDb id.");
-                return;
-            }
-
-            var client = new RestClient($"https://imdb8.p.rapidapi.com/title/get-seasons?tconst={title.IMDbId}");
-            var request = new RestRequest(Method.GET);
-            request.AddHeader("x-rapidapi-host", "imdb8.p.rapidapi.com");
-            request.AddHeader("x-rapidapi-key", "e568ff6b82msh655a9e2fabeadd8p1bb151jsn1c0fb32acc0a");
-            var response = await client.ExecuteAsync(request);
-            SeasonDetails[] seasonsDetails = JsonSerializer.Deserialize<SeasonDetails[]>(response.Content);
-
-            var episodes = 0;
-            var seasons = 0;
-
-            foreach (var season in seasonsDetails) {
-                var seasonModel = new Season {
-                    Id = Security.IdGen.GetId(),
-                    Name = null,
-                    Number = season.Season,
-                    TitleId = title.Id,
-                };
-                await context.Seasons.AddAsync(seasonModel);
-                seasons++;
-                foreach (var episode in season.Episodes) {
-                    var episodeModel = new Episode {
-                        Id = Security.IdGen.GetId(),
-                        OriginalName = episode.Title,
-                        Number = episode.Episode,
-                        Year = episode.Year,
-                        IMDbId = episode.Id,
-                        SeasonId = seasonModel.Id,
-                        TitleId = title.Id,
-                    };
-                    await context.Episodes.AddAsync(episodeModel);
-                    episodes++;
-                }
-            }
-
-            title.Episodes = episodes;
-            title.Seasons = seasons;
-
-            context.Titles.Update(title);
-
-            await context.SaveChangesAsync();
-
-            await httpContext.Response.WriteAsync($"{{\"success\":true,\"data\":{response.Content}}}");
-        }*/
     }
 }

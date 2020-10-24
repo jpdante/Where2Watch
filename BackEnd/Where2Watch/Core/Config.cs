@@ -4,6 +4,7 @@
         public DatabaseConfig Db;
         public SmtpConfig Smtp;
         public RedisConfig Redis;
+        public RapidApiConfig RapidApi;
         public string CaptchaKey;
 
         public static Config NewConfig() {
@@ -23,6 +24,9 @@
                 },
                 Redis = new RedisConfig {
                     ConnectionString = "localhost"
+                },
+                RapidApi = new RapidApiConfig {
+                    Key = "<key>",
                 },
                 CaptchaKey = "0x0000000000000000000000000000000000000000",
             };
@@ -52,5 +56,9 @@
 
         public string ConnectionString;
 
+    }
+
+    public class RapidApiConfig {
+        public string Key;
     }
 }
