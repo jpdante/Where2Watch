@@ -2,5 +2,6 @@
   "http.notfound": "404 - Page not found",
   "platforms.available": "Available in:",
   "poster.dislike": "Dislike",
-  "poster.like": "Like"
+  "poster.like": "Like",
+  "navbar.search": "Search"
 }

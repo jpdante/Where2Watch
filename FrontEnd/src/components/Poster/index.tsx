@@ -47,7 +47,7 @@ function Poster(props: any) {
               ))}
             </div>
           </div>
-          <p>{titleStore.get("summary")}</p>
+          <p>{titleStore.get("outline")}</p>
           <div className={styles.bottom}>
             <div className="text-center">
               <button

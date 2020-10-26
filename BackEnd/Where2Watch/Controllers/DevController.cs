@@ -1,11 +1,16 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Text.Json;
 using System.Threading.Tasks;
 using HtcSharp.HttpModule.Http.Abstractions;
 using HtcSharp.HttpModule.Http.Abstractions.Extensions;
+using Microsoft.EntityFrameworkCore;
+using Nest;
 using RestSharp;
 using Where2Watch.Extensions;
 using Where2Watch.Models;
+using Where2Watch.Models.ElasticSearch;
 using Where2Watch.Models.IMDb;
 using Where2Watch.Mvc;
 
@@ -151,6 +156,89 @@ namespace Where2Watch.Controllers {
             await context.SaveChangesAsync();
 
             await httpContext.Response.WriteAsync($"{{\"success\":true}}");
+        }
+
+        /*
+        [HttpGet("/api/dev/search/clear")]
+        public static async Task ClearSearchIndex(HttpContext httpContext) {
+            if (!httpContext.Request.Query.TryGetValue("key", out var key)) {
+                await httpContext.Response.SendErrorAsync(1, "Invalid `dev key`.");
+                return;
+            }
+            if (key.Count == 0 || !DevKeys.Contains(key[0])) {
+                await httpContext.Response.SendErrorAsync(2, "Invalid dev key.");
+                return;
+            }
+
+            HtcPlugin.TitleSearch.ClearIndex();
+            await httpContext.Response.WriteAsync($"{{\"success\":true}}");
+        }*/
+
+        [HttpGet("/api/dev/search/fill")]
+        public static async Task FillSearchIndex(HttpContext httpContext) {
+            if (!httpContext.Request.Query.TryGetValue("key", out var key)) {
+                await httpContext.Response.SendErrorAsync(1, "Invalid `dev key` or `t input`.");
+                return;
+            }
+            if (key.Count == 0 || !DevKeys.Contains(key[0])) {
+                await httpContext.Response.SendErrorAsync(2, "Invalid dev key.");
+                return;
+            }
+
+            await using var context = new DatabaseContext();
+
+            ElasticTitle[] titles = await (from t in context.Titles select new ElasticTitle(t)).ToArrayAsync();
+
+            await HtcPlugin.ElasticClient.Indices.DeleteAsync("title", c => c);
+
+            await HtcPlugin.ElasticClient.Indices.CreateAsync("title", c => c
+                .Map(m => m
+                    .AutoMap<ElasticTitle>()
+                )
+            );
+
+            foreach (var title in titles) {
+                //await HtcPlugin.ElasticClient.DeleteAsync(title, idx => idx.Index("title"));
+                await HtcPlugin.ElasticClient.IndexAsync(title, idx => idx.Index("title"));
+            }
+
+            await httpContext.Response.WriteAsync($"{{\"success\":true}}");
+        }
+
+        [HttpGet("/api/dev/search/get")]
+        public static async Task SearchIndex(HttpContext httpContext) {
+            if (!httpContext.Request.Query.TryGetValue("key", out var key) ||
+                !httpContext.Request.Query.TryGetValue("t", out var t)) {
+                await httpContext.Response.SendErrorAsync(1, "Invalid `dev key`.");
+                return;
+            }
+            if (key.Count == 0 || !DevKeys.Contains(key[0])) {
+                await httpContext.Response.SendErrorAsync(2, "Invalid dev key.");
+                return;
+            }
+            if (t.Count == 0) {
+                await httpContext.Response.SendErrorAsync(3, "Invalid t input.");
+                return;
+            }
+
+            string searchString = t[0].ToLower();
+
+
+            ISearchResponse<ElasticTitle> response = await HtcPlugin.ElasticClient.SearchAsync<ElasticTitle>(s => s
+                .Index("title")
+                .From(0)
+                .Size(5)
+                .Query(q => q
+                    .MatchPhrasePrefix(pp => pp
+                        .Name("title_query")
+                        .Boost(1.1)
+                        .Field(f => f.Name)
+                        .Query(searchString)
+                    )
+                )
+            );
+
+            await httpContext.Response.WriteAsync(JsonSerializer.Serialize(new { success = true, search = searchString, result = response.Documents }));
         }
     }
 }

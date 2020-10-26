@@ -1,0 +1,68 @@
+// -- Body --
+
+$bg-dark: #1f1e1e;
+$body-bg: #1f1e1e;
+$body-color: #999;
+
+// -- Close Button --
+$close-color: #ffffff;
+$close-text-shadow: 0 1px 0 #000000 !default;
+
+// -- Card --
+$card-bg: #1c1b1b;
+$card-spacer-y: 10px;
+$card-spacer-x: 10px;
+$card-border-color: #1a1919;
+
+// -- Modal --
+$modal-content-bg: #1a1a1a;
+$modal-header-border-color: #1a1a1a;
+$modal-footer-border-color: #1a1a1a;
+
+// -- Input --
+$input-bg: #242323;
+$input-group-addon-bg: #242323;
+$input-border-color: #242323;
+$input-color: #e4e4e4;
+$input-disabled-bg: #2c2a2a;
+$input-disabled-border-color: #2c2a2a;
+
+$input-focus-border-color: #242323;
+$input-group-addon-color: #666;
+
+// -- Dropdown --
+$dropdown-bg: #1f1e1e;
+$dropdown-color: #ececec;
+$dropdown-border-color: #1f1e1e;
+
+$dropdown-link-color: #ececec;
+$dropdown-link-hover-color: #f8f8f8;
+$dropdown-link-hover-bg: #403d3d;
+
+$dropdown-link-active-color: #f8f8f8;
+$dropdown-link-active-bg: #484444;
+
+$dropdown-link-disabled-color: #262525;
+
+$dropdown-divider-bg: #363434;
+
+// -- Alerts --
+$alert-bg-level: 10;
+$alert-border-level: 0;
+$alert-color-level: -10;
+
+// -- Colors --
+$red: #ff003d;
+$pink: #e83e8c;
+
+$theme-colors: (
+  "pink": $pink,
+  "red": $red,
+);
+
+$colors: (
+  "pink": $pink,
+  "red": $red,
+);
+
+$danger: $red;

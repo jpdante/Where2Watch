@@ -1,5 +1,8 @@
 import React, { Suspense } from "react";
 
+import "bootstrap";
+import "jquery";
+import "./style/global.scss";
 import "./utils/I18next";
 import "./utils/FontAwesome";
 

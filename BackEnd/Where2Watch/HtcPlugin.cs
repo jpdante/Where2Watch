@@ -12,6 +12,7 @@ using HtcSharp.HttpModule;
 using HtcSharp.HttpModule.Http.Abstractions;
 using HtcSharp.HttpModule.Routing;
 using Microsoft.EntityFrameworkCore;
+using Nest;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 using StackExchange.Redis;
@@ -31,6 +32,8 @@ namespace Where2Watch {
         internal static Config Config { get; private set; }
         internal static ConnectionMultiplexer RedisConnection { get; private set; }
         internal static IDatabase Redis { get; private set; }
+        internal static ElasticClient ElasticClient;
+        //internal static SearchEngine TitleSearch { get; private set; }
 
         public async Task Load(PluginServerContext pluginServerContext, ILogger logger) {
             Logger = logger;
@@ -38,7 +41,7 @@ namespace Where2Watch {
                 ContractResolver = new CamelCasePropertyNamesContractResolver(),
             };
 
-            string configPath = Path.Combine(pluginServerContext.PluginsPath, "w2w.json");
+            string configPath = Path.Combine(pluginServerContext.PluginsPath, "w2w-data", "config.json");
             if (!File.Exists(configPath)) {
                 Config = Config.NewConfig();
                 await File.WriteAllTextAsync(configPath, JsonConvert.SerializeObject(Config));
@@ -48,6 +51,11 @@ namespace Where2Watch {
             DatabaseContext.SetConnectionString($"server={Config.Db.Host};port={Config.Db.Port};database={Config.Db.Database};user={Config.Db.Username};password={Config.Db.Password}");
             _ = new Captcha(Config.CaptchaKey);
             LoadControllers();
+
+            //TitleSearch = new SearchEngine();
+            //await TitleSearch.Configure(Path.Combine(pluginServerContext.PluginsPath, "w2w-data", "index"));
+            var elasticSettings = new ConnectionSettings(new Uri("http://127.0.0.1:9200"));
+            ElasticClient = new ElasticClient(elasticSettings);
 
             var context = new DatabaseContext();
             await context.Database.MigrateAsync();
