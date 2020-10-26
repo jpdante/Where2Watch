@@ -15,6 +15,7 @@ type State = {
   year: number;
   classification: string;
   genres: string[];
+  availability: any[];
 };
 
 let initialState: State = {
@@ -32,6 +33,7 @@ let initialState: State = {
   year: 0,
   classification: "",
   genres: [],
+  availability: [],
 };
 
 export default createConnectedStore(initialState, withReduxDevtools);

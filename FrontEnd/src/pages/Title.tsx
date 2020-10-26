@@ -36,6 +36,7 @@ function Title(props: any) {
           titleStore.set("year")(e.data.year);
           titleStore.set("classification")(e.data.classification);
           titleStore.set("genres")(e.data.genres);
+          titleStore.set("availability")(e.data.availability);
         }
       })
       .catch((e) => {
