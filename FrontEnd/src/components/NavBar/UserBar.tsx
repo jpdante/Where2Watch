@@ -2,7 +2,6 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
 import AuthStore from "../../undux/AuthStore";
-import ProfileStore from "../../undux/ProfileStore";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
 
@@ -11,8 +10,6 @@ import styles from "./NavBar.module.scss";
 function UserBar() {
   const { t } = useTranslation();
   let authStore = AuthStore.useStore();
-  let profileStore = ProfileStore.useStore();
-
   async function logOut() {
     authStore.set("token")(null);
   }
