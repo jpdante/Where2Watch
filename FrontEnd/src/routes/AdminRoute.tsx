@@ -12,7 +12,6 @@ const AdminRoute: React.FC<RouterPropsDOM> = ({
 }) => {
   let authStore = AuthStore.useStore();
   let profileStore = ProfileStore.useStore();
-  console.error(profileStore.get("type"));
   return authStore.get("isAuthenticated") && profileStore.get("type") === 1 ? (
     <Route component={Component} {...rest} />
   ) : (
