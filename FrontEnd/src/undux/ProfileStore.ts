@@ -4,16 +4,16 @@ type State = {
   loaded: boolean;
   email: string;
   username: string;
-  picture: string;
   country: string;
+  type: number;
 };
 
 let initialState: State = {
   loaded: false,
   email: "default@default.com",
   username: "default",
-  picture: "default",
   country: "us",
+  type: 0,
 };
 
 export default createConnectedStore(initialState, withReduxDevtools);

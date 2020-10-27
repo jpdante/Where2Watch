@@ -25,6 +25,9 @@ namespace Where2Watch.Models {
         public string Password { get; set; }
 
         [Required]
+        public AccountType AccountType { get; set; }
+
+        [Required]
         [Column(TypeName = "TIMESTAMP")]
         public DateTime LastAccess { get; set; }
     }

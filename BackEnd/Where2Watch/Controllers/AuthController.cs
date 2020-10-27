@@ -10,6 +10,7 @@ using Newtonsoft.Json;
 using Where2Watch.Extensions;
 using Where2Watch.Models;
 using Where2Watch.Models.Request;
+using Where2Watch.Models.View;
 using Where2Watch.Mvc;
 using Where2Watch.Security;
 
@@ -42,11 +43,12 @@ namespace Where2Watch.Controllers {
 
             var account = new Account {
                 Id = Security.IdGen.GetId(),
+                Guid = Guid.NewGuid().ToString("N"),
                 Email = registerData.Email,
-                Guid = Guid.NewGuid().ToString(),
-                LastAccess = DateTime.UtcNow,
-                Password = password,
                 Username = registerData.Username,
+                Password = password,
+                LastAccess = DateTime.UtcNow,
+                AccountType = AccountType.Default,
             };
             try {
                 await context.Accounts.AddAsync(account);
@@ -101,7 +103,7 @@ namespace Where2Watch.Controllers {
                     await context.SaveChangesAsync();
                     httpContext.Session.Set("account", account.Id);
                     await httpContext.Session.CommitAsync();
-                    await httpContext.Response.WriteAsync(JsonConvert.SerializeObject(new { success = true, token = httpContext.Session.Id }));
+                    await httpContext.Response.WriteAsync(JsonConvert.SerializeObject(new { success = true, token = httpContext.Session.Id, account = new AccountView(account) }));
                 } catch (Exception ex) {
                     HtcPlugin.Logger.LogError(ex);
                     await httpContext.Response.SendInternalErrorAsync(8, "An internal failure occurred while attempting to create the account. Please try again later.");

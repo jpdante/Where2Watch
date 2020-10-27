@@ -19,17 +19,6 @@ function UserBar() {
 
   return (
     <ul className="nav navbar-nav ml-auto w-100 justify-content-end">
-      <li className="nav-item mr-3">
-        <a
-          className="nav-link"
-          href="#"
-          data-toggle="dropdown"
-          aria-haspopup="true"
-          aria-expanded="false"
-        >
-          <FontAwesomeIcon icon="bell" />
-        </a>
-      </li>
       <li className="nav-item dropdown">
         {authStore.get("isAuthenticated") ? (
           <a
@@ -41,9 +30,7 @@ function UserBar() {
           >
             <div className={styles.pictureContainer}>
               <img
-                src={`http://s3.tryhosting.com.br/profile/picture/${profileStore.get(
-                  "picture"
-                )}`}
+                src={`http://s3.tryhosting.com.br/profile/picture/default`}
                 width="30"
                 height="30"
                 className="mx-auto d-inline-block align-top"

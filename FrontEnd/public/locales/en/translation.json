@@ -3,5 +3,18 @@
   "platforms.available": "Available in:",
   "poster.dislike": "Dislike",
   "poster.like": "Like",
-  "navbar.search": "Search"
+  "navbar.search": "Search",
+
+  "page.register.email": "Email",
+  "page.register.username": "Username",
+  "page.register.password": "Password",
+  "page.register.confirmPassword": "Confirm Password",
+  "page.register.month": "Month",
+  "page.register.day": "Day",
+  "page.register.year": "Year",
+  "page.register.register": "Register",
+
+  "page.login.email": "Email",
+  "page.login.password": "Password",
+  "page.login.login": "Login"
 }

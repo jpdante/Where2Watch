@@ -1,0 +1,360 @@
+@font-face {
+  font-family: Poppins-Regular;
+  src: url(../../fonts/poppins/Poppins-Regular.ttf);
+}
+
+/*@font-face {
+  font-family: Poppins-Medium;
+  src: url(../../fonts/poppins/Poppins-Medium.ttf);
+}
+
+@font-face {
+  font-family: Poppins-Bold;
+  src: url(../../fonts/poppins/Poppins-Bold.ttf);
+}
+
+@font-face {
+  font-family: Poppins-SemiBold;
+  src: url(../../fonts/poppins/Poppins-SemiBold.ttf);
+}*/
+
+.container {
+  width: 100%;
+  min-height: 100vh;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  padding: 15px;
+  animation: mymove 5s infinite;
+}
+
+.wrapper {
+  width: 360px;
+  background: #1a1717;
+  border-radius: 10px;
+  overflow: hidden;
+
+  padding: 55px 55px 55px 55px;
+
+  -webkit-box-shadow: 0px 0px 37px -10px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 0px 0px 37px -10px rgba(0, 0, 0, 0.75);
+  box-shadow: 0px 0px 37px -10px rgba(0, 0, 0, 0.75);
+}
+
+.loginWrapper {
+  width: 360px;
+}
+
+.registerWrapper {
+  width: 660px;
+}
+
+.logo {
+  margin-bottom: 60px;
+  img {
+    max-width: 200px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+.inputWrap {
+  width: 100%;
+  position: relative;
+  border-bottom: 2px solid #494949;
+  margin-bottom: 37px;
+}
+
+.dateWrap {
+  position: relative;
+  border-bottom: 2px solid #494949;
+  margin-bottom: 37px;
+}
+
+.dateTitle {
+  font-family: Poppins-Regular;
+  font-size: 15px;
+  color: #cccccc;
+  display: block;
+}
+
+.dateDescription {
+  font-family: Poppins-Regular;
+  font-size: 12px;
+  color: #999;
+  display: block;
+  margin-bottom: 20px;
+}
+
+.dateContainer {
+  margin-bottom: 30px;
+}
+
+.input {
+  font-family: Poppins-Regular;
+  font-size: 15px;
+  color: #e4e4e4;
+  line-height: 1.2;
+  display: block;
+  width: 100%;
+  height: 45px;
+  background: 0 0;
+  padding: 0 5px;
+  outline: none;
+  border: none;
+
+  &:focus {
+    border-color: transparent !important;
+  }
+
+  &,
+  &:hover,
+  &:focus {
+    box-shadow: 0 0 0 30px #1a1717 inset !important;
+    color: #e4e4e4 !important;
+  }
+
+  &:focus + .inputFocus::after {
+    top: -15px;
+  }
+
+  &:focus + .inputFocus::before {
+    width: 100%;
+  }
+}
+
+.select {
+  font-family: Poppins-Regular;
+  font-size: 15px;
+  color: #e4e4e4;
+  line-height: 1.2;
+  display: block;
+  width: 100%;
+  height: 45px;
+  background: 0 0;
+  padding: 0 5px;
+  outline: none;
+  border: none;
+
+  &:focus {
+    border-color: transparent !important;
+  }
+
+  &,
+  &:hover,
+  &:focus {
+    box-shadow: 0 0 0 30px #1a1717 inset !important;
+    color: #e4e4e4 !important;
+  }
+
+  &:focus + .inputFocus::after {
+    top: -15px;
+  }
+
+  &:focus + .inputFocus::before {
+    width: 100%;
+  }
+
+  option {
+    margin: 40px;
+    background: #1a1717;
+    color: #fff;
+  }
+}
+
+select option:checked,
+select option:hover {
+  box-shadow: 0 0 10px 100px #2e2929 inset !important;
+}
+
+select:focus > option:checked {
+  background: #2e2929 !important;
+}
+
+.hasVal.input + .inputFocus::after {
+  top: -15px;
+}
+
+.hasVal.input + .inputFocus::before {
+  width: 100%;
+}
+
+.hasVal.select + .inputFocus::after {
+  top: -15px;
+}
+
+.hasVal.select + .inputFocus::before {
+  width: 100%;
+}
+
+.inputFocus {
+  position: absolute;
+  display: block;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+
+  &::before {
+    content: "";
+    display: block;
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    -webkit-transition: all 0.4s;
+    -o-transition: all 0.4s;
+    -moz-transition: all 0.4s;
+    transition: all 0.4s;
+    background: #ff003d;
+  }
+
+  &::after {
+    font-family: Poppins-Regular;
+    font-size: 15px;
+    color: #999;
+    line-height: 1.2;
+    content: attr(data-placeholder);
+    display: block;
+    width: 100%;
+    position: absolute;
+    top: 16px;
+    left: 0;
+    padding-left: 5px;
+    -webkit-transition: all 0.4s;
+    -o-transition: all 0.4s;
+    -moz-transition: all 0.4s;
+    transition: all 0.4s;
+  }
+}
+
+.btnShowPass {
+  font-size: 15px;
+  color: #999;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  align-items: center;
+  position: absolute;
+  height: 100%;
+  top: 0;
+  right: 0;
+  padding-right: 5px;
+  cursor: pointer;
+  -webkit-transition: all 0.4s;
+  -o-transition: all 0.4s;
+  -moz-transition: all 0.4s;
+  transition: all 0.4s;
+
+  &:hover {
+    color: #ff003d;
+  }
+
+  &.active {
+    color: #ff003d;
+  }
+
+  &.paddingRight {
+    padding-right: 20px !important;
+  }
+}
+
+.checkIcon {
+  font-size: 15px;
+  color: #999;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  align-items: center;
+  position: absolute;
+  height: 100%;
+  top: 0;
+  right: 0;
+  padding-right: 5px;
+  -webkit-transition: all 0.4s;
+  -o-transition: all 0.4s;
+  -moz-transition: all 0.4s;
+  transition: all 0.4s;
+  color: #ff003d;
+
+  &.active {
+    color: #3BB54A;
+  }
+}
+
+.loginBtn {
+  font-family: Poppins-Regular;
+  color: white;
+  -webkit-transition: all 0.4s;
+  -o-transition: all 0.4s;
+  -moz-transition: all 0.4s;
+  transition: all 0.4s;
+  left: -100%;
+  background: #ff003d;
+
+  &:hover {
+    font-family: Poppins-Regular;
+    color: white;
+    text-shadow: 2px 2px 8px #ffffff;
+  }
+}
+
+.errorBubble {
+  width: 100%;
+  font-family: Poppins-Regular;
+  color: white;
+  background: #ff003d;
+  -webkit-transition: all 0.4s;
+  -o-transition: all 0.4s;
+  -moz-transition: all 0.4s;
+  transition: all 0.4s;
+  padding: 8px;
+  border-radius: 5px;
+  visibility: hidden;
+  opacity: 0;
+  margin-bottom: 0px;
+
+  &.errorBubbleShow {
+    visibility: visible !important;
+    opacity: 1 !important;
+    margin-bottom: 30px;
+  }
+}
+
+.modalContent {
+  background-color: #1A1717 !important;
+  -webkit-box-shadow: 0px 0px 37px -10px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 0px 0px 37px -10px rgba(0, 0, 0, 0.75);
+  box-shadow: 0px 0px 37px -10px rgba(0, 0, 0, 0.75);
+}
+
+.modalBody {
+  font-family: Poppins-Regular;
+  color: #999;
+}
+
+.modalFooter {
+  border-top: 1px solid rgb(20, 18, 18);
+}
+
+.svg {
+  margin-bottom: 20px;
+  img {
+    max-width: 70px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}

@@ -13,7 +13,7 @@ function ProfileLoader(props: any) {
           profileStore.set("loaded")(true);
           profileStore.set("email")(e.data.email);
           profileStore.set("username")(e.data.username);
-          profileStore.set("picture")(e.data.picture);
+          profileStore.set("type")(e.data.accountType);
         }
       });
     }

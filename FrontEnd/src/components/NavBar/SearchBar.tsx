@@ -6,7 +6,6 @@ import lodash from "lodash";
 
 import styles from "./NavBar.module.scss";
 import Net from "../../utils/Net";
-import { Link } from "react-router-dom";
 import { useHistory } from "react-router-dom";
 
 interface PropType {
