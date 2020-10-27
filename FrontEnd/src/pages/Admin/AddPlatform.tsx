@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import CountrySelect from "../../components/CountrySelect";
-import SearcherSelect from "../../components/SearcherSelect";
 import Platform from "../../model/Platform";
 import { getCountryByLanguage } from "../../utils/Locale";
 import Net from "../../utils/Net";
@@ -9,36 +8,26 @@ interface IProps {
   platforms: Platform[];
 }
 
-function AddAvailability(props: IProps) {
-  const [titleId, setTitleId] = useState<string>("");
+function AddPlatform(props: IProps) {
+  const [name, setName] = useState<string>("");
+  const [icon, setIcon] = useState<string>("");
   const [country, setCountry] = useState<string>("");
-  const [platform, setPlatform] = useState<string>("");
   const [link, setLink] = useState<string>("");
 
-  useEffect(() => {
-    if (props.platforms.length > 0) setPlatform(props.platforms[0].id);
-  }, [props.platforms]);
-
-  function setResult(id: string) {
-    setTitleId(id);
-  }
-
   function handlerAdd(e: any) {
-    console.warn(country);
-    if (!titleId) return;
+    if (!name) return;
+    if (!icon) return;
     if (!country) return;
-    if (!platform) return;
     if (!link) return;
-    Net.post("/api/admin/availability/add", {
-      imdbId: titleId,
-      country,
-      platform,
-      link,
-    })
+    Net.post("/api/admin/platform/add", { name, icon, country, link })
       .then((e) => {
         if (e.data && e.data.success) {
+          setName("");
+          setIcon("");
+          setCountry("");
           setLink("");
           alert("Ok!");
+          window.location.reload();
         }
       })
       .catch((e) => {
@@ -49,13 +38,26 @@ function AddAvailability(props: IProps) {
 
   return (
     <div className="module">
-      <h5 className="text-center m-0 p-0">Add availability</h5>
+      <h5 className="text-center m-0 p-0">Add platform</h5>
       <hr className="mt-1 hr-light" />
       <div className="form-group">
-        <label>Title</label>
-        <SearcherSelect selectTitle={setResult} />
+        <label>Name</label>
+        <input
+          type="text"
+          className="form-control"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+        />
       </div>
-
+      <div className="form-group">
+        <label>Icon</label>
+        <input
+          type="text"
+          className="form-control"
+          value={icon}
+          onChange={(e) => setIcon(e.target.value)}
+        />
+      </div>
       <div className="form-group">
         <label>Country</label>
         <CountrySelect
@@ -63,23 +65,6 @@ function AddAvailability(props: IProps) {
           onSelect={setCountry}
           value={country}
         />
-      </div>
-
-      <div className="form-group">
-        <label>Platform</label>
-        <select
-          className="form-control"
-          value={platform}
-          onChange={(e) => setPlatform(e.target.value)}
-        >
-          {props.platforms.map((platform, index) => {
-            return (
-              <option value={platform.id} key={index}>
-                {platform.name}
-              </option>
-            );
-          })}
-        </select>
       </div>
       <div className="form-group">
         <label>Link</label>
@@ -97,4 +82,4 @@ function AddAvailability(props: IProps) {
   );
 }
 
-export default AddAvailability;
+export default AddPlatform;

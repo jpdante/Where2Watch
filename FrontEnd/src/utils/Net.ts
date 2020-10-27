@@ -1,5 +1,8 @@
 import axios from "axios";
-import { getAuthenticationToken, deleteAuthenticationToken } from "./LocalStorage";
+import {
+  getAuthenticationToken,
+  deleteAuthenticationToken,
+} from "./LocalStorage";
 
 const Net = axios.create(/*{
   baseURL: "http://localhost:8080",

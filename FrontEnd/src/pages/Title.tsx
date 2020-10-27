@@ -19,7 +19,10 @@ function Title(props: any) {
 
   useEffect(() => {
     if (titleStore.get("imdbId") === params.id) return;
-    Net.post("/api/title/get", { id: params.id, country: profileStore.get("country") })
+    Net.post("/api/title/get", {
+      id: params.id,
+      country: profileStore.get("country"),
+    })
       .then((e) => {
         if (e.data) {
           titleStore.set("imdbId")(e.data.imdbId);
@@ -42,7 +45,7 @@ function Title(props: any) {
       .catch((e) => {
         history.push("/");
       });
-  });
+  }, [params, params.id]);
 
   return (
     <div>

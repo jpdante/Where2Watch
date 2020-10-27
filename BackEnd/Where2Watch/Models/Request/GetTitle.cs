@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Threading.Tasks;
-using HtcSharp.Core.Logging.Abstractions;
 using HtcSharp.HttpModule.Http.Abstractions;
 using Newtonsoft.Json;
 using Where2Watch.Extensions;
@@ -21,7 +20,6 @@ namespace Where2Watch.Models.Request {
                 await httpContext.Response.SendRequestErrorAsync(1, "Id is invalid or empty.");
                 return false;
             }
-            HtcPlugin.Logger.LogDebug(Country);
             if (string.IsNullOrEmpty(Country)) {
                 await httpContext.Response.SendRequestErrorAsync(2, "Country is invalid or empty.");
                 return false;

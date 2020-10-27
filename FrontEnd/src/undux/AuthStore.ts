@@ -1,5 +1,8 @@
 import { Effects, Store, createConnectedStore } from "undux";
-import { hasAuthenticationToken, getAuthenticationToken } from "../utils/LocalStorage";
+import {
+  hasAuthenticationToken,
+  getAuthenticationToken,
+} from "../utils/LocalStorage";
 import effects from "./AuthEffects";
 
 type State = {
@@ -18,4 +21,4 @@ export type StoreProps = {
   store: Store<State>;
 };
 
-export type StoreEffects = Effects<State>
+export type StoreEffects = Effects<State>;

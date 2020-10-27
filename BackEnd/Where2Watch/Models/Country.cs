@@ -1,4 +1,8 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
+using System.Linq;
+using System.Reflection;
+
 // ReSharper disable InconsistentNaming
 
 namespace Where2Watch.Models {
@@ -252,5 +256,15 @@ namespace Where2Watch.Models {
         [Description("Yemen")] YE = 247,
         [Description("Zambia")] ZM = 248,
         [Description("Zimbabwe")] ZW = 249,
+    }
+
+    public static class CountryExtensions {
+        public static string GetCountryDescription(this Country value) {
+            var fi = value.GetType().GetField(value.ToString());
+            if (fi != null && (fi.GetCustomAttributes(typeof(DescriptionAttribute), false) is DescriptionAttribute[] attributes && attributes.Any())) {
+                return attributes.First().Description;
+            }
+            return value.ToString();
+        }
     }
 }

@@ -11,10 +11,7 @@ class Home extends React.Component<WithTranslation> {
   }
 
   render() {
-    return (
-      <div className="pt-3" style={{ height: "800px" }}>
-      </div>
-    );
+    return <div className="pt-3" style={{ height: "800px" }}></div>;
   }
 }
 

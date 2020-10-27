@@ -26,7 +26,7 @@ namespace Where2Watch.Controllers {
             TitleAvailabilityView[] titleAvailabilities = await (
                 from ta in context.TitleAvailabilities
                 join p in context.Platforms on ta.PlatformId equals p.Id
-                where ta.Id.Equals(title.Id) && ta.Country.Equals(getTitle.CountryData)
+                where ta.TitleId.Equals(title.Id) && ta.Country.Equals(getTitle.CountryData)
                 select new TitleAvailabilityView(ta, new PlatformView(p))).ToArrayAsync();
 
             await httpContext.Response.WriteAsync(JsonSerializer.Serialize(new TitleView(title, titleAvailabilities)));

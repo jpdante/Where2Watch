@@ -8,7 +8,7 @@ namespace Where2Watch {
         public static readonly int Major = 0;
         public static readonly int Minor = 1;
         public static readonly int Patch = 0;
-        public static readonly int Build = 128;
+        public static readonly int Build = 138;
 
         public static string GetVersion() { return $"{Major}.{Minor}.{Patch} Build {Build}"; }
 

@@ -1,4 +1,6 @@
 @import "./bootstrap.scss";
+@import "./custom/scrollbar.scss";
+@import "flag-icon-css/sass/flag-icon.scss";
 
 .module {
   background-color: #141414;
@@ -21,5 +23,9 @@
 }
 
 .hr-light {
-  border-top: 1px solid #1F1F1F;
+  border-top: 1px solid #1f1f1f;
+}
+
+.input-bg {
+  background-color: #242323;
 }

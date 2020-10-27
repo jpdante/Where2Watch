@@ -68,7 +68,8 @@ class Register extends React.Component<IProps, IState> {
     if (!this.validateEmail(state.email)) return false;
     if (!this.validateUsername(state.username)) return false;
     if (!this.validatePassword(state.password)) return false;
-    if (!this.validateConfirmPassword(state.confirmPassword, state.password)) return false;
+    if (!this.validateConfirmPassword(state.confirmPassword, state.password))
+      return false;
     return true;
   }
 

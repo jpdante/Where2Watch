@@ -1,5 +1,7 @@
 import { Store, createConnectedStore, withReduxDevtools } from "undux";
 
+import { getCountryByLanguage } from "./../utils/Locale";
+
 type State = {
   loaded: boolean;
   email: string;
@@ -12,7 +14,7 @@ let initialState: State = {
   loaded: false,
   email: "default@default.com",
   username: "default",
-  country: "us",
+  country: getCountryByLanguage(),
   type: 0,
 };
 

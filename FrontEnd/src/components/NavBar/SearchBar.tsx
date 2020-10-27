@@ -45,7 +45,8 @@ function SearchBar(props: PropType) {
     setSearching(false);
   }
 
-  const sleep = (ms: number) => new Promise(resolve => setTimeout(resolve, ms))
+  const sleep = (ms: number) =>
+    new Promise((resolve) => setTimeout(resolve, ms));
 
   async function onSearchBlur(e: any) {
     await sleep(500);

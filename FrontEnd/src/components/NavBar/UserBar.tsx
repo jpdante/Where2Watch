@@ -50,13 +50,6 @@ function UserBar() {
           className={`${styles.animate} ${styles.slideIn} ${styles.dropDown} dropdown-menu dropdown-menu-right`}
           aria-labelledby="navbarDropdownMenuLink"
         >
-          {authStore.get("isAuthenticated") && (
-            <Link className="dropdown-item" to="/dashboard">
-              <FontAwesomeIcon icon="sliders-h" />
-              Dashboard
-            </Link>
-          )}
-          <div className="dropdown-divider"></div>
           <Link className="dropdown-item" to="/language">
             <FontAwesomeIcon icon="globe-americas" />
             {t("navbar.language")}

@@ -15,6 +15,10 @@ namespace Where2Watch.Models.Request {
                 await httpContext.Response.SendRequestErrorAsync(1, "Data is invalid or empty.");
                 return false;
             }
+            if (Data.Length > 64) {
+                await httpContext.Response.SendRequestErrorAsync(1, "Data cannot have more than 64 characters.");
+                return false;
+            }
             return true;
         }
     }
