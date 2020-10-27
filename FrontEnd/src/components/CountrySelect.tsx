@@ -22,6 +22,7 @@ function CountrySelect(props: IProps) {
         }
       });
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [props.value]);
 
   return (

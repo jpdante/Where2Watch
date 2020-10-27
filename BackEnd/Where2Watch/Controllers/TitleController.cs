@@ -31,5 +31,18 @@ namespace Where2Watch.Controllers {
 
             await httpContext.Response.WriteAsync(JsonSerializer.Serialize(new TitleView(title, titleAvailabilities)));
         }
+
+        [HttpPost("/api/availability/get", ContentType.JSON)]
+        public static async Task GetAvailability(HttpContext httpContext, GetAvailability getAvailability) {
+            await using var context = new DatabaseContext();
+
+            TitleAvailabilityView[] titleAvailabilities = await (
+                from ta in context.TitleAvailabilities
+                join p in context.Platforms on ta.PlatformId equals p.Id
+                where ta.TitleId.Equals(getAvailability.IdData) && ta.Country.Equals(getAvailability.CountryData)
+                select new TitleAvailabilityView(ta, new PlatformView(p))).ToArrayAsync();
+
+            await httpContext.Response.WriteAsync(JsonSerializer.Serialize(titleAvailabilities));
+        }
     }
 }

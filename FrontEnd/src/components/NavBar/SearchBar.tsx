@@ -1,6 +1,5 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { useCallback, useState } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useTranslation } from "react-i18next";
 import lodash from "lodash";
 
@@ -69,11 +68,8 @@ function SearchBar(props: PropType) {
           onFocus={() => setSearching(true)}
           onBlur={onSearchBlur}
         />
-        <div className="input-group-append">
-          <button type="submit" className="btn btn-outline-secondary">
-            <FontAwesomeIcon icon="search" aria-hidden="true" />
-          </button>
-          {props.hasNavbarToggler && (
+        {props.hasNavbarToggler && (
+          <div className="input-group-append">
             <button
               className="btn btn-outline-secondary"
               type="button"
@@ -85,8 +81,8 @@ function SearchBar(props: PropType) {
             >
               <span className="navbar-toggler-icon"></span>
             </button>
-          )}
-        </div>
+          </div>
+        )}
         <div
           className={`${styles.animate} ${styles.slideIn} ${
             styles.searchDropDown

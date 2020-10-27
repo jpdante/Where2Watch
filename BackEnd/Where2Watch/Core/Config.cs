@@ -6,6 +6,7 @@
         public RedisConfig Redis;
         public RapidApiConfig RapidApi;
         public string CaptchaKey;
+        public string Domain;
 
         public static Config NewConfig() {
             return new Config {
@@ -28,6 +29,7 @@
                 RapidApi = new RapidApiConfig {
                     Key = "<key>",
                 },
+                Domain = "w2w.com",
                 CaptchaKey = "0x0000000000000000000000000000000000000000",
             };
         }

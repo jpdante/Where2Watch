@@ -16,20 +16,23 @@ import ProfileStore from "./undux/ProfileStore";
 import TitleStore from "./undux/TitleStore";
 import SharedStore from "./undux/SharedStore";
 import SharedLoader from "./utils/SharedLoader";
+import FeedStore from "./undux/FeedStore";
 
 function App() {
   return (
     <AuthStore.Container>
       <SessionCheck>
         <ProfileStore.Container>
-        <ProfileLoader />
+          <ProfileLoader />
           <SharedStore.Container>
-          <SharedLoader />
-            <TitleStore.Container>
-              <Suspense fallback={<Loading />}>
-                <Routes />
-              </Suspense>
-            </TitleStore.Container>
+            <SharedLoader />
+            <FeedStore.Container>
+              <TitleStore.Container>
+                <Suspense fallback={<Loading />}>
+                  <Routes />
+                </Suspense>
+              </TitleStore.Container>
+            </FeedStore.Container>
           </SharedStore.Container>
         </ProfileStore.Container>
       </SessionCheck>

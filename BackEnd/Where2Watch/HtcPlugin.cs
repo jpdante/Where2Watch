@@ -99,6 +99,7 @@ namespace Where2Watch {
 
         public async Task OnHttpPageRequest(HttpContext httpContext, string filename) {
             try {
+                if (!httpContext.Request.Host.Host.Equals(Config.Domain)) return;
                 if (_routes.TryGetValue(filename, out var value)) {
                     if (httpContext.Request.Method.Equals(value.Item1.Method)) {
                         httpContext.Session = new Session(httpContext);

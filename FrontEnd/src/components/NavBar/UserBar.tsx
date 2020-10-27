@@ -27,7 +27,7 @@ function UserBar() {
           >
             <div className={styles.pictureContainer}>
               <img
-                src={`http://s3.tryhosting.com.br/profile/picture/default`}
+                src={`/assets/images/default.webp`}
                 width="30"
                 height="30"
                 className="mx-auto d-inline-block align-top"
@@ -50,11 +50,6 @@ function UserBar() {
           className={`${styles.animate} ${styles.slideIn} ${styles.dropDown} dropdown-menu dropdown-menu-right`}
           aria-labelledby="navbarDropdownMenuLink"
         >
-          <Link className="dropdown-item" to="/language">
-            <FontAwesomeIcon icon="globe-americas" />
-            {t("navbar.language")}
-          </Link>
-          <div className="dropdown-divider"></div>
           {!authStore.get("isAuthenticated") && (
             <Link className="dropdown-item" to="/login">
               <FontAwesomeIcon icon="sign-in-alt" />

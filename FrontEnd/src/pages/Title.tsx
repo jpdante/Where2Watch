@@ -45,6 +45,7 @@ function Title(props: any) {
       .catch((e) => {
         history.push("/");
       });
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [params, params.id]);
 
   return (

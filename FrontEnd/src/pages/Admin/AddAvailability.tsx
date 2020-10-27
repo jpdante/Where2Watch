@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import CountrySelect from "../../components/CountrySelect";
 import SearcherSelect from "../../components/SearcherSelect";
 import Platform from "../../model/Platform";
-import { getCountryByLanguage } from "../../utils/Locale";
 import Net from "../../utils/Net";
 
 interface IProps {

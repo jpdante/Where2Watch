@@ -2,7 +2,7 @@
   "name": "where2watch",
   "version": "0.1.0",
   "private": true,
-  "homepage": "http://tryhosting.com.br",
+  "homepage": "https://where2watch.tk",
   "proxy": "http://localhost:35740",
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.32",
